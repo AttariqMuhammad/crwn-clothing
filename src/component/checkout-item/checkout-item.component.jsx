@@ -7,10 +7,12 @@ export default function CheckoutItem({ cartItem }) {
   const { name, quantity, price, imageUrl, clearCartItem } = cartItem;
 
   //use context cart context
-  const { removeItemToCart, clearItemToCart } = useContext(CartContext);
+  const { removeItemToCart, clearItemToCart, addItemtoCart } =
+    useContext(CartContext);
 
-  const removeHandler = () => removeItemToCart(cartItem);
-  const clearHandler = () => clearItemToCart(cartItem);
+  const removeItemHandler = () => removeItemToCart(cartItem);
+  const clearItemHandler = () => clearItemToCart(cartItem);
+  const addItemHandler = () => addItemtoCart(cartItem);
 
   return (
     <div className="checkout-item-container">
@@ -19,14 +21,16 @@ export default function CheckoutItem({ cartItem }) {
       </div>
       <span className="name">{name}</span>
       <span className="quantity">
-        <div className="arrow" onClick={removeHandler}>
+        <div className="arrow" onClick={removeItemHandler}>
           &#10094;
         </div>
         <span className="value">{quantity}</span>
-        <div className="arrow">&#10095;</div>
+        <div className="arrow" onClick={addItemHandler}>
+          &#10095;
+        </div>
       </span>
       <span className="price">{price}</span>
-      <div className="remove-button" onClick={clearHandler}>
+      <div className="remove-button" onClick={clearItemHandler}>
         &#10005;
       </div>
     </div>
