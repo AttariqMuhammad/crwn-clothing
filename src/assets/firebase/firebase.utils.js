@@ -8,7 +8,7 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, writeBatch, collection } from "firebase/firestore";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -37,6 +37,25 @@ export const signInWithGooglePopup = () =>
 
 //get db fromm firestore
 const db = getFirestore();
+
+//add local collcetion to firestore : using writeBatch
+export const addCollectionAndDocument = async(collcetionKey, objectsToAdd) =>{
+  //declare batch
+  const batch = writeBatch(db);
+  //declare collection ref = collection => catagories
+  const collectionRef = collection(db, collcetionKey)
+
+  //objectToAdd => an object of an array
+  objectsToAdd.forEach((object) => {
+    //docRef => reference to where the document address => collection = catagories, document = object.title
+    const docRef = doc(collectionRef, object.title.toLowerCase())  
+    batch.set(docRef, object)  
+  });
+
+  await batch.commit();
+  console.log('done')
+}
+
 
 //getting response auth from login page and check with userSnapshot.exist()
 export const createUserDocumentFromAuth = async (
