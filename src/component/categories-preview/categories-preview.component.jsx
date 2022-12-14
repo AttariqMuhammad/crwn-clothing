@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import PorductCard from "../component/product-card/product-card.component";
-import { CatagoriesContext } from "../contexts/catagories.context";
+import PorductCard from "../product-card/product-card.component";
+import { CategoriesContext } from "../../contexts/categories.context";
 
-export default function CatagoriesPreview() {
+export default function CategoriesPreview() {
   //use contect cart context
-  const { products } = useContext(CatagoriesContext);
+  const { products } = useContext(CategoriesContext);
 
   return (
     <div className="products-container">
