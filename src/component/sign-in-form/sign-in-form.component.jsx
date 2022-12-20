@@ -1,5 +1,5 @@
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { useState, useContext } from "react";
 
@@ -82,7 +82,11 @@ export default function SignInpForm() {
         <div className="button-sign-in-container">
           <Button type="submit">Sign In</Button>
 
-          <Button buttonType="google" type="button" onClick={logGoogleUser}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={logGoogleUser}
+          >
             Google
           </Button>
         </div>

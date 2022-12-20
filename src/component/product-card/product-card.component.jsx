@@ -14,9 +14,9 @@ export default function PorductCard({ product }) {
   // addProductToCart
   const addProductToCart = () => {
     addItemtoCart(product);
-    console.log({ cartItems });
-    console.log({ addItemtoCart });
-    console.log({ product });
+    // console.log({ cartItems });
+    // console.log({ addItemtoCart });
+    // console.log({ product });
   };
 
   return (

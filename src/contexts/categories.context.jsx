@@ -3,35 +3,35 @@ import { createContext, useState, useEffect } from "react";
 import SHOP_DATA from "../shop-data.js";
 
 import {
-  addCollectionAndDocument,
   getCategoriesAndDocument,
+  addCollectionAndDocument,
 } from "../assets/firebase/firebase.utils.js";
 
-export const CatagoriesContext = createContext({
-  products: [],
+export const CategoriesContext = createContext({
+  categoriesMap: {},
 });
-export const CatagoriesProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+export const CategoriesProvider = ({ children }) => {
+  const [categoriesMap, setCategoriesMap] = useState({});
 
-  // add data to firebase
   // useEffect(() => {
   //   addCollectionAndDocument("categories", SHOP_DATA);
   // }, []);
 
   useEffect(() => {
     const getCategoriesMap = async () => {
-      const categoryMap = await getCategoriesAndDocument("catagories");
+      const categoryMap = await getCategoriesAndDocument();
       console.log(categoryMap);
+      setCategoriesMap(categoryMap);
     };
 
     getCategoriesMap();
   }, []);
 
-  const value = { products };
+  const value = { categoriesMap };
 
   return (
-    <CatagoriesContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </CatagoriesContext.Provider>
+    </CategoriesContext.Provider>
   );
 };
