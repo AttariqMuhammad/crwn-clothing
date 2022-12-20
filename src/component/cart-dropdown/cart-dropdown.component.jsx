@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 
-import { CartDropdownContainer, CartItems } from "./cart-dropdown.styles.jsx";
+import {
+  CartDropdownContainer,
+  CartItems,
+  EmptyMessage,
+} from "./cart-dropdown.styles.jsx";
 import {
   BaseButton,
   GoogleSignInButton,
@@ -25,9 +29,11 @@ export default function CartDropdown() {
   return (
     <CartDropdownContainer>
       <CartItems>
-        {cartItems.map((cartItem) => (
-          <CartItem cartItem={cartItem} />
-        ))}
+        {cartItems.length ? (
+          cartItems.map((cartItem) => <CartItem cartItem={cartItem} />)
+        ) : (
+          <EmptyMessage>Your cart is empty</EmptyMessage>
+        )}
       </CartItems>
       <Button
         buttonType={BUTTON_TYPE_CLASSES.BaseButton}
