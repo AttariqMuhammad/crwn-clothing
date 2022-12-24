@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 
 import { UserContext } from "../../contexts/user.context";
 
-import "./sign-in-form.styles.scss";
+import "./sign-in-form.styles.jsx";
 
 import {
   signInWithGooglePopup,
