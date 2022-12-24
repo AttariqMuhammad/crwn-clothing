@@ -5,7 +5,10 @@ import { useState, useContext } from "react";
 
 import { UserContext } from "../../contexts/user.context";
 
-import "./sign-in-form.styles.jsx";
+import {
+  SignInContainer,
+  ButtonSignInContainer,
+} from "./sign-in-form.styles.jsx";
 
 import {
   signInWithGooglePopup,
@@ -58,7 +61,7 @@ export default function SignInpForm() {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Already have an account ?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -79,7 +82,7 @@ export default function SignInpForm() {
           name="password"
         />
 
-        <div className="button-sign-in-container">
+        <ButtonSignInContainer>
           <Button type="submit">Sign In</Button>
 
           <Button
@@ -89,8 +92,8 @@ export default function SignInpForm() {
           >
             Google
           </Button>
-        </div>
+        </ButtonSignInContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 }
